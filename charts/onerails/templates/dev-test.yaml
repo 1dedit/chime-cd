@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dev-test
+  labels:
+    app: dev-test
+spec:
+  containers:
+    - name: dev-test
+      image: busybox:1.36
+      command:
+        - sh
+        - -c
+        - |
+          env
+          # keep the container alive to exec into later
+          sleep 3600
+      securityContext:
+        privileged: true
+  restartPolicy: Never
