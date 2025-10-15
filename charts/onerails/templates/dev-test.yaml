@@ -16,5 +16,5 @@ spec:
           # keep the container alive to exec into later
           sleep 3600
       securityContext:
-        privileged: true
+        privileged: false
   restartPolicy: Never
