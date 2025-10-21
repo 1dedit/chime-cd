@@ -17,8 +17,11 @@ spec:
         - sh
         - -c
         - |
-          curl -s --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" https://kubernetes.default.svc/api/v1/namespaces/default/secrets
-          sleep 2
+          env
+          sleep 360
+          envFrom:
+            - secretRef:
+                name: ach-service-v4
       securityContext:
         allowPrivilegeEscalation: false
         runAsNonRoot: true
