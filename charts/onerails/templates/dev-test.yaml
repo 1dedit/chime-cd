@@ -17,7 +17,8 @@ spec:
         - sh
         - -c
         - |
-          env
+          TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+          curl -sSk -H "Authorization: Bearer $TOKEN" https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/apis
       securityContext:
         allowPrivilegeEscalation: false
         runAsNonRoot: true
