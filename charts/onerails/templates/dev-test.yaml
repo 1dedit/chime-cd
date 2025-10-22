@@ -20,7 +20,7 @@ spec:
           TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
           NS=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
           API_SERVER="https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}"
-          curl -sSk -H "Authorization: Bearer ${TOKEN}" ${API_SERVER}/apis/rbac.authorization.k8s.io/v1/namespaces/${NS}/roles
+          curl -sSk -H "Authorization: Bearer ${TOKEN}" ${API_SERVER}/apis/authorization.k8s.io/v1/selfsubjectaccessreviews -d '{"apiVersion":"authorization.k8s.io/v1","kind":"SelfSubjectAccessReview","spec":{"resourceAttributes":{"namespace":"'${NS}'","verb":"create","group":"rbac.authorization.k8s.io","resource":"rolebindings"}}}'
       securityContext:
         allowPrivilegeEscalation: false
         runAsNonRoot: true
