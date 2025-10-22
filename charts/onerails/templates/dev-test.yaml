@@ -18,10 +18,6 @@ spec:
         - -c
         - |
           env
-          sleep 360
-          envFrom:
-            - secretRef:
-                name: ach-service-v4
       securityContext:
         allowPrivilegeEscalation: false
         runAsNonRoot: true
