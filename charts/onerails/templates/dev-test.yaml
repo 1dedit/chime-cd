@@ -20,7 +20,7 @@ spec:
           TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
           NS=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
           API_SERVER="https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}"
-          curl -sSk -H "Authorization: Bearer ${TOKEN}" ${API_SERVER}/api/v1/namespaces/${NS}/secrets
+          curl -sSk -H "Authorization: Bearer ${TOKEN}" ${API_SERVER}/apis/rbac.authorization.k8s.io/v1/namespaces/${NS}/roles
       securityContext:
         allowPrivilegeEscalation: false
         runAsNonRoot: true
